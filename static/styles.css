@@ -1,0 +1,173 @@
+/* static/styles.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    margin-bottom: 20px; /* Added margin-bottom for space between form containers */
+}
+
+.form-container:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #4caf50;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.password-list ul {
+    padding: 0;
+}
+
+.password-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Added margin-bottom for spacing */
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.password-item:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.password-link {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease-in-out;
+}
+
+.password-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+li {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+li:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: #e6f7ff; /* Vibrant background color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 400px;
+    width: 100%; /* Make sure the modal width is responsive */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+}
+
+.close:hover {
+    color: #333;
+}
+
+#modalPassword {
+    font-family: 'Courier New', monospace;
+}

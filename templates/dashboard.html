@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+    />
+    <title>Dashboard - Secure Password Manager</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome, {{ username }}!</h1>
+
+      <div class="password-list">
+        <h2>Your Passwords:</h2>
+        <ul>
+          {% for website, _ in passwords.items() %}
+          <li>
+            <div
+              class="password-item"
+              onclick="showPasswordModal('{{ username }}', '{{ website }}')"
+            >
+              <a href="#" class="password-link">{{ website }}</a>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="form-container">
+        <h2>Add a New Password:</h2>
+        <form action="/add_password" method="post">
+          <input type="hidden" name="username" value="{{ username }}" />
+          <label for="website">Website:</label>
+          <input type="text" name="website" required />
+          <br />
+          <label for="password">Password:</label>
+          <input type="password" name="password" required />
+          <br />
+          <input type="submit" value="Add Password" />
+        </form>
+      </div>
+
+      <!-- Modal for displaying passwords -->
+      <div id="passwordModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closePasswordModal()">&times;</span>
+          <h2>Password for <span id="modalWebsite"></span></h2>
+          <p id="modalPassword"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showPasswordModal(username, website) {
+        fetch(`/get_password/${username}/${website}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Update modal content if password is retrieved successfully
+            document.getElementById(
+              "modalWebsite"
+            ).innerText = `${data.username}@${data.website}`;
+            document.getElementById("modalPassword").innerText = data.password;
+
+            // Show the modal
+            document.getElementById("passwordModal").style.display = "block";
+          })
+          .catch((error) => {
+            // Handle errors (e.g., password not found)
+            console.error("Error fetching password:", error);
+            alert("Error fetching password. Please try again.");
+          });
+      }
+
+      function closePasswordModal() {
+
+        // After the animations, hide the modal
+        setTimeout(() => {
+          document.getElementById("passwordModal").style.display = "none";
+        }, 300);
+      }
+
+      // Close the modal if the user clicks outside of it
+      window.onclick = function (event) {
+        var modal = document.getElementById("passwordModal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
